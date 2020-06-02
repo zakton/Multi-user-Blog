@@ -5,6 +5,8 @@ from django.views.generic.edit import CreateView, UpdateView, \
                                       DeleteView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin, \
+                                       PermissionRequiredMixin
 from .models import Post
 
 class AuthorMixin(object):
@@ -17,7 +19,7 @@ class AuthorEditMixin(object):
         form.instance.author = self.request.user
         return super(AuthorEditMixin, self).form_valid(form)
 
-class AuthorPostMixin(AuthorMixin): #, LoginRequiredMixin):
+class AuthorPostMixin(AuthorMixin, LoginRequiredMixin):
     model = Post
     fields = ['title', 'body', 'status']
     success_url = reverse_lazy('blog:post_list') #('manage_post_list') should be for restricted access
@@ -46,25 +48,17 @@ class PostListView(ListView):           # for restricted viewing
     paginate_by = 3
     template_name = 'blog/post/list.html'
 
-class PostCreateView(AuthorPostEditMixin, CreateView):
-    #model = Post
-    #fields = ['title', 'body', 'status'] #, 'author']
-    #success_url = reverse_lazy('blog:post_list')
-    #template_name = 'blog/post/createupdate.html'
+class PostCreateView(PermissionRequiredMixin, AuthorPostEditMixin, CreateView):
+    permission_required = 'blog.add_post'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class PostUpdateView(AuthorPostEditMixin, UpdateView):
-    #model = Post
-    #fields = ['title', 'body', 'status']
-    #success_url = reverse_lazy('blog:post_list')
-    #template_name = 'blog/post/createupdate.html'
-    pass
+class PostUpdateView(PermissionRequiredMixin, AuthorPostEditMixin, UpdateView):
+    permission_required = 'blog.change_post'
 
-class PostDeleteView(AuthorPostMixin, DeleteView):
-    #model = Post
-    #fields = ['title', 'slug', 'body', 'status', 'author']
-    #success_url = reverse_lazy('blog:post_list')
+
+class PostDeleteView(PermissionRequiredMixin, AuthorPostMixin, DeleteView):
     template_name = 'blog/post/delete.html'
+    permission_required = 'blog.delete_post'

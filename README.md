@@ -8,11 +8,6 @@ Objective: to make it multi-user.
 
 To Do:
 
-002 - Allow blogger as a user to create a blog
-  a. Introduce OwnerPostMixin ... Done
-  b. Create author1, Restrict for create, update, delete
-      - Create login, logout etc.
-
 003 - Two classes of blog: public and restricted.
 
 
@@ -22,3 +17,8 @@ Done
 
 001 - Create form to create a blog.
 ... make it complete, view, create, edit, delete.
+
+002 - Allow blogger as a user to create a blog
+  a. Introduce OwnerPostMixin ... Done
+  c. Create author1, Restrict for create, update, delete
+      - Create login, logout etc.
