@@ -11,6 +11,7 @@ To Do:
 002 - Allow blogger as a user to create a blog
   a. Introduce OwnerPostMixin ... Done
   b. Create author1, Restrict for create, update, delete
+      - Create login, logout etc.
 
 003 - Two classes of blog: public and restricted.
 

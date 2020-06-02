@@ -13,6 +13,14 @@
   <div id="sidebar">
     <h2>My blog</h2>
       <p>This is my blog.</p>
+
+      {% if request.user.is_authenticated %}
+        <li>User: {{ request.user }}</li>
+        <li><a href="{% url "logout" %}">Sign out</a></li>
+      {% else %}
+        <li><a href="{% url "login" %}">Sign in</a></li>
+      {% endif %}
+
   </div>
 </body>
 </html>
