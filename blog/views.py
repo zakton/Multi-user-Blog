@@ -45,9 +45,21 @@ class PostListView(ListView):
 class PostCreateView(CreateView):
     model = Post
     fields = ['title', 'body', 'status'] #, 'author']
-    template_name = 'blog/post/postform.html'
     success_url = reverse_lazy('blog:post_list')
+    template_name = 'blog/post/postform.html'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+class PostUpdateView(UpdateView):
+    model = Post
+    fields = ['title', 'body', 'status']
+    success_url = reverse_lazy('blog:post_list')
+    template_name = 'blog/post/postform.html'
+
+class PostDeleteView(DeleteView):
+    model = Post
+    fields = ['title', 'slug', 'body', 'status', 'author']
+    success_url = reverse_lazy('blog:post_list')
+    template_name = 'blog/post/postdeleteform.html'
