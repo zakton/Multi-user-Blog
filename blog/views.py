@@ -1,7 +1,10 @@
-from django.shortcuts import render, get_object_or_404 
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
-from .models import Post 
+from django.views.generic.edit import CreateView, UpdateView, \
+                                      DeleteView
+from django.urls import reverse_lazy
+from .models import Post
 
 
 def post_list(request):
@@ -38,3 +41,13 @@ class PostListView(ListView):
     context_object_name = 'posts'
     paginate_by = 3
     template_name = 'blog/post/list.html'
+
+class PostCreateView(CreateView):
+    model = Post
+    fields = ['title', 'body', 'status'] #, 'author']
+    template_name = 'blog/post/postform.html'
+    success_url = reverse_lazy('blog:post_list')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
