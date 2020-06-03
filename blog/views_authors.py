@@ -33,7 +33,7 @@ class AuthorPostEditMixin(AuthorPostMixin, AuthorEditMixin):
     #success_url = reverse_lazy('manage_post_list')
     template_name = 'blog/post/createupdate.html'
 
-
+'''
 class PostDetailView(DetailView):       # For restricted viewing. Two types of blog for public and restricted.
                                         # Have to create another one for public viewing.
     template_name = 'blog/post/detail.html'
@@ -51,6 +51,8 @@ class PostListView(ListView):           # for restricted viewing
     context_object_name = 'posts'
     paginate_by = 3
     template_name = 'blog/post/list.html'
+
+'''
 
 class PostCreateView(PermissionRequiredMixin, AuthorPostEditMixin, CreateView):
     permission_required = 'blog.add_post'

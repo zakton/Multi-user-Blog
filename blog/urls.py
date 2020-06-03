@@ -1,24 +1,28 @@
 from django.urls import path
-from . import views
-
+#from . import views
+from . import views_public
+from . import views_authors
 
 app_name = 'blog'
 urlpatterns = [
-    # post views
-    # path('', views.post_list, name='post_list'),
-    path('', views.PostListView.as_view(), name='post_list'),
+
+    # Public Views ... views
+    path('', views_public.PostListView.as_view(), name='post_list'),
     path('<int:year>/<int:month>/<int:day>/<slug:post>/',
-        #views.post_detail,
-        views.PostDetailView.as_view(),
+        views_public.PostDetailView.as_view(),
         name='post_detail'),
-    path('create/', views.PostCreateView.as_view(),
+
+    # Author Views ... views_author
+    path('create/', views_authors.PostCreateView.as_view(),
         name='post_create'),
-    path('<pk>/edit/', views.PostUpdateView.as_view(),
+    path('<pk>/edit/', views_authors.PostUpdateView.as_view(),
         name='post_edit'),
     path('<pk>/delete/',
-        views.PostDeleteView.as_view(),
+        views_authors.PostDeleteView.as_view(),
         name='post_delete'),
     path('manage',
-        views.AuthorPostListView.as_view(),
+        views_authors.AuthorPostListView.as_view(),
         name='manage_post_list'),
+
+    # Subscriber Views
 ]

@@ -23,3 +23,4 @@ Done
   c. Create author1, Restrict for create, update, delete
       - Create login, logout etc.
   d. Manage (dashboard) screen for Authors
+  002e Clean up separating views for public and authors.
