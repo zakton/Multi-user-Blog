@@ -9,6 +9,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin, \
                                        PermissionRequiredMixin
 from .models import Post
 
+# Notes:
+# - LoginRequiredMixin prohibits accessing a page without logging in
+# = PermissionRequiredMixin prohibits accessing a page without permission_required
+
 class AuthorMixin(object):
     def get_queryset(self):
         qs = super(AuthorMixin, self).get_queryset()
@@ -22,7 +26,7 @@ class AuthorEditMixin(object):
 class AuthorPostMixin(AuthorMixin, LoginRequiredMixin):
     model = Post
     fields = ['title', 'body', 'status']
-    success_url = reverse_lazy('blog:post_list') #('manage_post_list') should be for restricted access
+    success_url = reverse_lazy('blog:manage_post_list') #('manage_post_list') should be for restricted access
 
 class AuthorPostEditMixin(AuthorPostMixin, AuthorEditMixin):
     #fields = ['title', 'body', 'status']
@@ -62,3 +66,7 @@ class PostUpdateView(PermissionRequiredMixin, AuthorPostEditMixin, UpdateView):
 class PostDeleteView(PermissionRequiredMixin, AuthorPostMixin, DeleteView):
     template_name = 'blog/post/delete.html'
     permission_required = 'blog.delete_post'
+
+class AuthorPostListView(PermissionRequiredMixin, AuthorPostMixin, ListView):
+    template_name = 'blog/post/managed_list.html'
+    permission_required = 'blog.change_post'

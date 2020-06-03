@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 
-
 {% block title %}
   {% if object %}
     Edit post "{{ object.title }}"
@@ -17,7 +16,7 @@
       Create a new post
     {% endif %}
   </h1>
-  <div class="module">
+  <div class="post">
     <h2>Post Entry</h2>
     <form action="." method="post">
       {{ form.as_p }}

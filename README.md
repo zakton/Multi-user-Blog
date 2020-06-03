@@ -22,3 +22,4 @@ Done
   a. Introduce OwnerPostMixin ... Done
   c. Create author1, Restrict for create, update, delete
       - Create login, logout etc.
+  d. Manage (dashboard) screen for Authors

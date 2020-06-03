@@ -18,4 +18,7 @@ urlpatterns = [
     path('<pk>/delete/',
         views.PostDeleteView.as_view(),
         name='post_delete'),
+    path('manage',
+        views.AuthorPostListView.as_view(),
+        name='manage_post_list'),
 ]
