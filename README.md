@@ -8,7 +8,7 @@ Objective: to make it multi-user.
 
 To Do:
 
-003 - Two classes of blog: public and restricted.
+004 Seggregate Login for subscribers. Login for authors.
 
 
 ------------------------------------
@@ -24,3 +24,5 @@ Done
       - Create login, logout etc.
   d. Manage (dashboard) screen for Authors
   002e Clean up separating views for public and authors.
+
+003 Two classes of blog: public and restricted. Subscriber can view subscribed posts. (url: blog/subscribed).

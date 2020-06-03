@@ -9,11 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, \
                                        PermissionRequiredMixin
 from .models import Post
 
-# Notes:
-# - LoginRequiredMixin prohibits accessing a page without logging in
-# = PermissionRequiredMixin prohibits accessing a page without permission_required
-
-class PostDetailView(DetailView):       # For restricted viewing. Two types of blog for public and restricted.
+class SubscriberDetailView(DetailView):       # For restricted viewing. Two types of blog for public and restricted.
                                         # Have to create another one for public viewing.
     template_name = 'blog/post/detail.html'
 
@@ -25,8 +21,11 @@ class PostDetailView(DetailView):       # For restricted viewing. Two types of b
                                        publish__day=day)
         return self.render_to_response({'post': post})
 
-class PostListView(ListView):           # for restricted viewing
-    queryset = Post.published.all()
+class SubscriberListView(LoginRequiredMixin, ListView):           # for restricted viewing
+    #queryset = Post.restricted.all()
     context_object_name = 'posts'
     paginate_by = 3
-    template_name = 'blog/post/list.html'
+    template_name = 'blog/subscribers/list.html'
+
+    def get_queryset(self):
+        return Post.objects.filter(status='published', restriction='restricted', subscribers__username=self.request.user)

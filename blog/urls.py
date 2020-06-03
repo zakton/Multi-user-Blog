@@ -2,6 +2,7 @@ from django.urls import path
 #from . import views
 from . import views_public
 from . import views_authors
+from . import views_subscribers
 
 app_name = 'blog'
 urlpatterns = [
@@ -20,9 +21,12 @@ urlpatterns = [
     path('<pk>/delete/',
         views_authors.PostDeleteView.as_view(),
         name='post_delete'),
-    path('manage',
+    path('manage/',
         views_authors.AuthorPostListView.as_view(),
         name='manage_post_list'),
 
     # Subscriber Views
+    path('subscribed/',
+        views_subscribers.SubscriberListView.as_view(),
+        name='subscriber_list'),
 ]

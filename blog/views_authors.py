@@ -25,34 +25,13 @@ class AuthorEditMixin(object):
 
 class AuthorPostMixin(AuthorMixin, LoginRequiredMixin):
     model = Post
-    fields = ['title', 'body', 'status']
+    fields = ['title', 'body', 'status', 'restriction']
     success_url = reverse_lazy('blog:manage_post_list') #('manage_post_list') should be for restricted access
 
 class AuthorPostEditMixin(AuthorPostMixin, AuthorEditMixin):
     #fields = ['title', 'body', 'status']
     #success_url = reverse_lazy('manage_post_list')
     template_name = 'blog/post/createupdate.html'
-
-'''
-class PostDetailView(DetailView):       # For restricted viewing. Two types of blog for public and restricted.
-                                        # Have to create another one for public viewing.
-    template_name = 'blog/post/detail.html'
-
-    def get(self, request, year, month, day, post):
-        post = get_object_or_404(Post, slug=post,
-                                       status='published',
-                                       publish__year=year,
-                                       publish__month=month,
-                                       publish__day=day)
-        return self.render_to_response({'post': post})
-
-class PostListView(ListView):           # for restricted viewing
-    queryset = Post.published.all()
-    context_object_name = 'posts'
-    paginate_by = 3
-    template_name = 'blog/post/list.html'
-
-'''
 
 class PostCreateView(PermissionRequiredMixin, AuthorPostEditMixin, CreateView):
     permission_required = 'blog.add_post'
