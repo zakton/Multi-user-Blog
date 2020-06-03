@@ -16,6 +16,7 @@
 
       {% if request.user.is_authenticated %}
         <li>User: {{ request.user }}</li>
+        <li>User Group: {{ request.user.groups.all.first }}</li>
         <li><a href="{% url "logout" %}">Sign out</a></li>
       {% else %}
         <li><a href="{% url "login" %}">Sign in</a></li>

@@ -10,6 +10,7 @@ To Do:
 
 004 Seggregate Login for subscribers. Login for authors.
 
+004b Redirect authors to blog/manage/ ; subscribers to blog/subscribed/
 
 ------------------------------------
 
@@ -26,3 +27,5 @@ Done
   002e Clean up separating views for public and authors.
 
 003 Two classes of blog: public and restricted. Subscriber can view subscribed posts. (url: blog/subscribed).
+
+004a User Group shown on sidebar
