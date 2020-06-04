@@ -4,7 +4,7 @@ Derived from: Mele Django by Example 2 Chapter 1
 
 Objective: to make it multi-user. Completed.
 
-Master: Multi-user Blog with Restricted Pages
+Master: Multi-user Blog with Restricted Pages.
 
 Shortcomings:
 - No auto registration for subscribers or Authors
