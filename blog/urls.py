@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.generic.base import RedirectView
 #from . import views
 from . import views_public
 from . import views_authors
@@ -8,10 +9,17 @@ app_name = 'blog'
 urlpatterns = [
 
     # Public Views ... views
-    path('', views_public.PostListView.as_view(), name='post_list'),
+    path('',
+        views_public.PostListView.as_view(),
+        name='post_list'),
     path('<int:year>/<int:month>/<int:day>/<slug:post>/',
         views_public.PostDetailView.as_view(),
         name='post_detail'),
+
+    # Redirect view on login
+    path('login_redirect/',
+        views_public.LoginRedirectView.as_view(),
+        name='redirect_view'),
 
     # Author Views ... views_author
     path('create/', views_authors.PostCreateView.as_view(),

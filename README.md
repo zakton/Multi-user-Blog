@@ -1,16 +1,39 @@
 # Multiuser Blog
 
-Based on Mele Django by Example 2 Chapter 1
+Derived from: Mele Django by Example 2 Chapter 1
 
-Objective: to make it multi-user.
+Objective: to make it multi-user. Completed.
+
+Master: Multi-user Blog with Restricted Blog
+Shortcomings:
+- No auto registration for subscribers or Authors
+- No payment for subscriptions to restricted materials
 
 ------------------------------------
 
 To Do:
 
-004 Seggregate Login for subscribers. Login for authors.
+Priority: 1
+- Make it part of your portfolio
+- Bootstrap it
+- Put it up in production
+- Portfolio:
+    - multi-user blog
+    - Scrapy
+    - Selenium
+    - API
 
-004b Redirect authors to blog/manage/ ; subscribers to blog/subscribed/
+- Add stock table screen
+- Add API to IB
+
+- Auto Registration for subscribers
+- Paid site (for registration)
+
+- Other Projects
+Priority: 2
+- Scraping with Scrapy
+- Scraping with Selenium
+- Any other API project?
 
 ------------------------------------
 
@@ -28,4 +51,6 @@ Done
 
 003 Two classes of blog: public and restricted. Subscriber can view subscribed posts. (url: blog/subscribed).
 
+004 Seggregate Login for subscribers. Login for authors.
 004a User Group shown on sidebar
+004b Redirect authors to blog/manage/ ; subscribers to blog/subscribed/
