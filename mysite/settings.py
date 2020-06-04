@@ -124,5 +124,5 @@ STATIC_URL = '/static/'
 
 # Login / Logout
 
-LOGIN_REDIRECT_URL = '/blog'
+LOGIN_REDIRECT_URL = '/blog/login_redirect'
 LOGOUT_REDIRECT_URL = '/blog'

@@ -7,6 +7,7 @@ from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, \
                                        PermissionRequiredMixin
+from django.views.generic.base import RedirectView
 from .models import Post
 
 # Notes:
@@ -30,3 +31,11 @@ class PostListView(ListView):           # for restricted viewing
     context_object_name = 'posts'
     paginate_by = 3
     template_name = 'blog/post/list.html'
+
+class LoginRedirectView(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        if self.request.user.groups.filter(name='Authors').exists():
+            return reverse_lazy('blog:manage_post_list')
+        else: # must be a subscriber
+            print('must be a subscriber')
+            return reverse_lazy('blog:subscriber_list')
